@@ -5,13 +5,38 @@ import Weather from "./Weather";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <div className="container">
-          <h1>Weather Forecast App</h1>
-          <Weather />
-          <button className="btn btn-primary">Search City</button>
-        </div>
-      </header>
+      <div className="container">
+        <Weather defaultCity="New York" />
+        <footer>
+          <p>
+            This project was coded by{" "}
+            <a
+              href="https://github.com/camilapferreira"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Camila P. Ferreira{" "}
+            </a>
+            and it is{" "}
+            <a
+              href="https://github.com/camilapferreira/react-weather-app"
+              target="_blank"
+              rel="noreferrer"
+            >
+              on GitHub{" "}
+            </a>
+            and
+            <a
+              href="https://react-weather-app-city.netlify.app/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              hosted on Netlify{" "}
+            </a>
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }
