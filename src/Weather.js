@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Weather.css";
-import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
+  const [city, setCity] = useState(props.city);
 
   function showTemperature(response) {
     setWeather({
@@ -20,9 +20,17 @@ export default function Weather() {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCitySearch(event) {
+    setCity(event.target.value);
+  }
+
   function search() {
     const key = "44b4d9f5e3a3baf490c33c5519ot4f0a";
-    const city = "Paris";
     const url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=metric`;
     axios.get(url).then(showTemperature);
   }
@@ -30,7 +38,7 @@ export default function Weather() {
   if (weather.ready) {
     return (
       <div className="Weather">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
@@ -38,6 +46,7 @@ export default function Weather() {
                 placeholder="Enter a city"
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCitySearch}
               />
             </div>
             <div className="col-3">
