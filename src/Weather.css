@@ -49,3 +49,7 @@
   margin-left: 5px;
   top: -34px;
 }
+
+a {
+  text-decoration: none;
+}
