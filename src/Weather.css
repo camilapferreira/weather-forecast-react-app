@@ -53,3 +53,12 @@
 a {
   text-decoration: none;
 }
+
+.WeatherForecast {
+  text-align: center;
+}
+
+.weather-forecast-min {
+  opacity: 0.6;
+  margin-left: 5px;
+}
