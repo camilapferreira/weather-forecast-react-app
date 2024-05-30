@@ -7,17 +7,18 @@ export default function Weather(props) {
   const [weather, setWeather] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
-  function showTemperature(response) {
+  function handleResponse(response) {
     console.log(response);
     setWeather({
       ready: true,
-      temperature: response.data.temperature.current,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
       wind: response.data.wind.speed,
-      humidity: response.data.temperature.humidity,
-      city: response.data.city,
-      description: response.data.condition.description,
-      icon: response.data.condition.icon_url,
-      date: new Date(response.data.time * 1000),
+      city: response.data.name,
     });
   }
 
@@ -31,9 +32,9 @@ export default function Weather(props) {
   }
 
   function search() {
-    const key = "44b4d9f5e3a3baf490c33c5519ot4f0a";
-    const url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=metric`;
-    axios.get(url).then(showTemperature);
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weather.ready) {
