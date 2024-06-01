@@ -62,7 +62,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weather} />
-        <WeatherForecast />
+        <WeatherForecast coordinates={weather.coord} />
       </div>
     );
   } else {
